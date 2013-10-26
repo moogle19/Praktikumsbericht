@@ -1,0 +1,78 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{ngerman}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{cite}
+\geometry{a4paper, top=25mm, left=25mm, right=25mm, bottom=25mm}
+
+\title{Seminar IT-Sicherheit}
+\author{Kevin Seidel \\ Studiengang Informatik \\ Matrikelnummer: 943147}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\vspace*{1.5cm}
+\begin{Large}
+\textbf{Universität Osnabrück}
+\end{Large}
+
+\noindent\hrulefill
+\\[3.5cm]
+PRAKTIKUMSBERICHT \\[1cm]
+zum Programmierpraktikum \\[1cm]
+\textbf{Paralelle Algorithmen mit OpenCL} \\[1.5cm]
+im Sommersemester 2013 \\[1.5cm]
+Thema: \\[0.5cm]
+\textbf{Voxelization} \\[2cm]
+Erstellt am 15.10.2013
+\end{center}
+\vfill
+\begin{flushleft}
+Vorgelegt von: 
+\hfill \parbox{46mm}{Kevin Seidel} \\
+\hfill \parbox{46mm}{943147} \\
+\hfill \parbox{46mm}{Falkenstraße 43} \\
+\hfill \parbox{46mm}{49124 Georgsmarienhütte}
+\end{flushleft}
+\end{titlepage}
+
+\newpage
+
+\pagenumbering{Roman}
+\setcounter{page}{2}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Einleitung}
+W"ahrend des Praktikums habe ich mich mit der Voxelization von Szenen auf der GPU besch"aftigt. 
+
+\section{Voxel und Voxelization}
+\subsection{Voxel}
+Das Wort Voxel setzt sich aus den englischen Begriffen ''volumetric'' und ''pixel'' zusammen. Frei "ubersetzt kann man es als einen dreidimensionalen Pixel bezeichnen.
+Das Voxel hat im Allgemeinen nur zwei Eigenschaften, welche dem eines Pixels gleichkommen. Es besitzt eine Position in einem vorher festgelegtem dreidimensionalem Raum und einen Farbwert.
+F"ur meinen Verwendungszweck wird das Voxel als W"urfel dargestellt, wobei alle Seiten die Farbe des Voxels tragen.
+\subsection{Voxelization}
+Die Voxelization ist die "Uberf"uhrung einer Szene aus Polygonen in Voxel. Diese Aufgabe kann hochgradig paralell ausgef"uhrt werden, wodurch sich die Nutzung der GPU f"ur dieses Verfahren anbietet. In der Literatur zu diesem Problem gibt es mehrere L"osungsans"atze. In fr"uheren Arbeiten wurde die Szene in mehrere Ebenen eingeteilt, sodass jede Voxelebene seperat gerendert wurde. Dies f"uhrt dazu, dass diese Verfahren sehr langsam ist, da f"ur h"ohere Dimensionen sehr viele Renderaufrufe durchgef"uhrt werden m"ussen.
+
+Eine etwa neuere Taktik nutzt die Paralellisierbarkeit dieser Aufgabe aus und "uberpr"uft Kollisionen zwischen den Polygonen und den Voxeln mittels GPU-Computing. Dieser Ansatz kann sowohl mittels Cuda als auch mittels OpenCL gel"ost werden. Im weiteren Verlauf dieser Arbeit wird nur der Ansatz mittels OpenCL dargelegt.
+Bei dieser neueren Methode wird f"ur jedes Polygon in der Szene ein eigener Thread gestartet und innerhalb dieses Threads wird "uberpr"uft, ob das Polygon ein Voxel "uberschneidet. Das Ergebnis wird dann in einen Buffer geschrieben, welcher dann f"ur jede Stelle des Voxelgrids einen Wert enth"alt, welcher angibt, ob das Voxel gef"ullt ist oder nicht.
+
+\section{Voxelization mit Hilfe von OpenGL}
+Zuerst habe ich mich mit der Voxelization mittels OpenGl besch"aftigt. Dieser Ansatz ist eine neuere Methode, da hierbei Funktionen aus OpenGL 4.2 genutzt werden. Diese Version ist im August 2011 erschienen.
+
+
+
+\section{Voxelization mit Hilfe von OpenCL}
+
+\section{Vergleich zwischen OpenGL und OpenCL Ansatz}
+
+\section{Nutzung der Voxeldaten}
+
+\section{Ausblick}
+
+\end{document}
